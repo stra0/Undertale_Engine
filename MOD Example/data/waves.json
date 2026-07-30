@@ -1,0 +1,23 @@
+{
+  "waves": {
+    "intro_bone": {
+      "timeline": [
+        {
+          "time": 100,
+          "type": "bone",
+          "x": 320,
+          "y": 320
+        }
+      ]
+    },
+
+    "bone_rain": {
+      "timeline": [
+        {
+          "time": 0,
+          "type": "bone"
+        }
+      ]
+    }
+  }
+}
