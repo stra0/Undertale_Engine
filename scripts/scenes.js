@@ -78,8 +78,6 @@ export class UndertaleScene extends Phaser.Scene {
 
 
     createCommon() {
-        this.pendingAnimation = [];
-
         this.input.setDefaultCursor("none");
 
         this.inputManager = new InputManager(this);
@@ -98,46 +96,43 @@ export class UndertaleScene extends Phaser.Scene {
 
     onCreate() {}
 
-    loadSpriteSheet(key,img,config) {
+    async loadSpriteSheet(key,imgString,configString) {
+        const config = await fetch(configString).then(r => r.json());
+
+        const blob = await fetch(imgString).then(r => r.blob());
+        const bitmap = await createImageBitmap(blob);
+
         if (config?.meta?.type === "spritesheet") {
-            this.load.spritesheet(
-                key,
-                img,
-                {
-                    frameWidth: config.texture.frameWidth,
-                    frameHeight: config.texture.frameHeight,
-                    margin: config.texture.margin ?? 0,
-                    spacing: config.texture.spacing ?? 0
-                }
-            );
-
-            this.pendingAnimation.push({
-                key: key,
-                config: config
-            })
-        }
-    }
-
-    createSpriteAnimation() {
-        for (const sheet of this.pendingAnimation) {
-            const key = sheet.key;
-            const config = sheet.config;
+            if (!this.textures.exists(key)) {
+                this.textures.addSpriteSheet(
+                    key,
+                    bitmap,
+                    {
+                        frameWidth: config.texture.frameWidth,
+                        frameHeight: config.texture.frameHeight,
+                        margin: config.texture.margin ?? 0,
+                        spacing: config.texture.spacing ?? 0
+                    }
+                );
+            }
 
             if (config.animations) {
                 for (const [animName, anim] of Object.entries(config.animations)) {
-                    this.anims.create({
-                        key: `${key}:${animName}`,
-                        frames: this.anims.generateFrameNumbers(key,{
-                            frames: anim.frames
-                        }),
-                        frameRate: anim.frameRate,
-                        repeat: anim.repeat
-                    });
+                    const animKey = `${key}:${animName}`;
+                    if (!this.anims.exists(animKey)) {
+                        this.anims.create({
+                            key: animKey,
+                            frames: this.anims.generateFrameNumbers(key,{
+                                frames: anim.frames
+                            }),
+                            frameRate: anim.frameRate,
+                            repeat: anim.repeat
+                        });
+                    }
                 }
             }
         }
-
-        this.pendingAnimation.length = 0;
+        bitmap.close();
     }
 
     createDebugOverlay() {
@@ -818,7 +813,6 @@ export class BattleSelectScene extends UndertaleScene {
     }
 
     async onCreate() {
-        this.createSpriteAnimation();
         this._files = new Map();
 
         this.updateables = [];
