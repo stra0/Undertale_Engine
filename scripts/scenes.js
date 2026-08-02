@@ -132,6 +132,7 @@ export class UndertaleScene extends Phaser.Scene {
                 }
             }
         }
+
         bitmap.close();
     }
 
