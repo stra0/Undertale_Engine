@@ -109,6 +109,22 @@ export class HpManager {
         if (!this.nextDamageSource || bullet.damage > this.nextDamageSource.damage) this.nextDamageSource = bullet;
     }
 
+    getHp() {
+        return this.hp;
+    }
+
+    getKr() {
+        return this.kr;
+    }
+
+    getMaxHp() {
+        return this.maxHp;
+    }
+
+    getInv() {
+        return this.inv;
+    }
+
     damage(damage,inv,kr=0) {
         this.hp -= damage;
         if (this.hp > 0) {
@@ -151,9 +167,10 @@ export class HpManager {
         }
         if (this.nextDamageSource) {
             this.damageTimer += delta;
+            const source = this.nextDamageSource;
             while (this.damageTimer >= 16.66) {
                 this.damageTimer -= 16.66;
-                this.damage(this.nextDamageSource.damage,this.nextDamageSource.inv,this.nextDamageSource.kr);
+                this.damage(source.damage,source.inv,source.kr);
                 this.nextDamageSource = null;
             }
         }
