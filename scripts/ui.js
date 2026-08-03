@@ -33,7 +33,7 @@ export class MenuCursor {
     }
 }
 
-export class BattleCard extends Phaser.GameObjects.Container {
+/*export class BattleCard extends Phaser.GameObjects.Container {
     constructor(scene,x,y,battleData,type,objects = {}) {
         super(scene,x,y);
 
@@ -73,5 +73,20 @@ export class BattleCard extends Phaser.GameObjects.Container {
                 this.objects.icon.setTintFill(0xffffff);
             }
         }
+    }
+}*/
+
+export class uiContainer extends Phaser.GameObjects.Container {
+    constructor(scene) {
+        super(scene,30,401);
+
+        scene.add.existing(this);
+        this.setDepth(DEPTH.BATTLE.UI.LOW);
+
+        this.createUI();
+    }
+
+    createUI() {
+        
     }
 }

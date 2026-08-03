@@ -1,19 +1,21 @@
-export const depth = {
-    battle: {
-        board: 400,
-        bullet: {
-            inside: 500,
-            outside: {
-                low: 700,
-                high: 1000
+export const DEPTH = {
+    BATTLE: {
+        BORAD: 400,
+        BULLET: {
+            INSIDE: 500,
+            OUTSIDE: {
+                LOW: 700,
+                HIGH: 1000
             },
         },
-        soul: 800
-    },
-        ui: {
-            text: 900,
-            menu: 350,
-        }
+        SOUL: 800,
+
+        UI: {
+            LOW: 300,
+            HIGH: 700
+        },
+
+    }
 }
 
 export function normalizeKey(key) {

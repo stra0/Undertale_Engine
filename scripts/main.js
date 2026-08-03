@@ -4,7 +4,7 @@ import {
     MainMenuScene, 
     OptionScene, 
     BattleSelectScene, 
-    PlayScene, 
+    BattleScene, 
     EditorScene 
 } from "./scenes.js";
 
@@ -41,7 +41,7 @@ window.addEventListener("DOMContentLoaded", async () => {
             MainMenuScene,
             OptionScene,
             BattleSelectScene,
-            PlayScene,
+            BattleScene,
             EditorScene
                ]
     };

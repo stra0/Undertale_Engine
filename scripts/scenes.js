@@ -1,6 +1,6 @@
 import { SaveManager } from './core.js';
 import { InputManager, SoundManager, HpManager } from './managers.js';
-import { MenuCursor, BattleCard } from './ui.js';
+import { MenuCursor,} from './ui.js';
 import { Board, RedSoul, Bone } from './objects.js';
 import { normalizeKey } from './constants.js';
 
@@ -862,7 +862,7 @@ export class BattleSelectScene extends UndertaleScene {
             for (const [key,assets] of this._files.entries()) {
                 await this.sameKeyAssetsLoad(key,assets);
             }
-                    this.scene.start("PlayScene",{
+                    this.scene.start("BattleScene",{
                         assets: this._files
                     });
                 });
@@ -962,9 +962,9 @@ export class BattleSelectScene extends UndertaleScene {
     }
 }
 
-export class PlayScene extends UndertaleScene {
+export class BattleScene extends UndertaleScene {
     constructor() {
-        super({key: "PlayScene"})
+        super({key: "BattleScene"})
     }
 
     init(data) {

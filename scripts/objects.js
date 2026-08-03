@@ -99,7 +99,7 @@ export class Board extends Phaser.GameObjects.Graphics {
         this.w = width;
         this.h = height;
         this.lineThickness = 5;
-        this.setDepth(depth.battle.board);
+        this.setDepth(DEPTH.BATTLE.BOARD);
 
         this.updateHalfSize();
 
@@ -156,7 +156,7 @@ export class Board extends Phaser.GameObjects.Graphics {
 
 export class Soul extends UndertaleObject {
     constructor(scene,x,y,board,color=0xffffff) {
-        super(scene,x,y,"assets/images/soul/soul",depth.battle.soul);
+        super(scene,x,y,"assets/images/soul/soul",DEPTH.BATTLE.BOARD);
 
         this.setTint(color);
 
@@ -245,7 +245,7 @@ export class RedSoul extends Soul {
 }
 
 export class Bullet extends UndertaleObject {
-    constructor(scene,x,y,baseWidth,baseHeight,scaleX,scaleY,texture,destroyOnHit,destroyOutsideBoard,ignore,inv,damage,kr=0,Depth=depth.battle.bullet.inside,events={hit: "bullet_hit"}) {
+    constructor(scene,x,y,baseWidth,baseHeight,scaleX,scaleY,texture,destroyOnHit,destroyOutsideBoard,ignore,inv,damage,kr=0,Depth=DEPTH.BATTLE.BULLET.INSIDE,events={hit: "bullet_hit"}) {
         super(scene,x,y,texture,Depth);
 
         this.baseWidth = baseWidth;
@@ -261,7 +261,7 @@ export class Bullet extends UndertaleObject {
         this.bulletEvents = events;
 
 
-        if (Depth === depth.battle.bullet.inside) {
+        if (Depth === DEPTH.BATTLE.BULLET.INSIDE) {
             this.setMask(scene.board.innerMask);
         }
     }
@@ -324,7 +324,7 @@ export class Bone extends Bullet {
             inv,
             damage,
             kr,
-            depth.battle.bullet.inside,
+            DEPTH.BATTLE.BULLET.INSIDE,
             events
         );
 
