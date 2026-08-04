@@ -238,7 +238,7 @@ export class UndertaleScene extends Phaser.Scene {
                ) {
         const string = this.getTextFromKey(jsonName,key);
         const lang = this.registry.get("lang") ?? "en";
-        const fontKey = lang === "jp" ? "JF-Dot-Shinonome14" : "Determinationmono";
+        const fontKey = lang === "ja" ? "JF-Dot-Shinonome14" : "Determinationmono";
         return this.drawText(string,x,y,{fontKey,fontSize,color,depth,origin});
                }
 
@@ -309,9 +309,9 @@ export class MainMenuScene extends UndertaleScene {
 
     preload(){
         this.load.json("assets/data/Menu_en", "./assets/data/Menu_en.json");
-        this.load.json("assets/data/Menu_jp", "./assets/data/Menu_jp.json");
+        this.load.json("assets/data/Menu_ja", "./assets/data/Menu_ja.json");
         this.load.json("assets/data/Option_en", "./assets/data/Option_en.json");
-        this.load.json("assets/data/Option_jp", "./assets/data/Option_jp.json");
+        this.load.json("assets/data/Option_ja", "./assets/data/Option_ja.json");
         this.load.json("assets/data/Option_config", "./assets/data/Option_config.json");
 
         this.load.audio("assets/sounds/snd_switch", "./assets/sounds/snd_switch.wav");

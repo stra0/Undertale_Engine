@@ -1,0 +1,59 @@
+{
+    "items": {
+        "Pie": {
+            "en": "Pie",
+            "ja": "パイ",
+            "consumable": true,
+            "maxUses": 1,
+            "uses": [
+                {
+                    "heal": 99
+                }
+            ]
+        },
+        "I.Noodles": {
+            "en": "I.Noodles",
+            "ja": "インスタントめん",
+            "consumable": true,
+            "maxUses": 1,
+            "uses": [
+                {
+                    "heal": 90
+                }
+            ]
+        },
+        "Steak": {
+            "en": "Steak",
+            "ja": "ステーキ",
+            "consumable": true,
+            "maxUses": 1,
+            "uses": [
+                {
+                    "heal": 60
+                }
+            ]
+        },
+        "SnowPiece": {
+            "en": "SnowPiece",
+            "ja": "ゆきだるまのかけら",
+            "consumable": true,
+            "maxUses": 1,
+            "uses": [
+                {
+                    "heal": 45
+                }
+            ]
+        },
+        "L. Hero": {
+            "en": "L. Hero",
+            "ja": "レジェンドヒーロー",
+            "consumable": true,
+            "maxUses": 1,
+            "uses": [
+                {
+                    "heal": 40
+                }
+            ]
+        }
+    }
+}

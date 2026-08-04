@@ -87,6 +87,6 @@ export class uiContainer extends Phaser.GameObjects.Container {
     }
 
     createUI() {
-        
+        this.scene.drawText(Player_GetName()+"   LV "+string(Player_GetLv()))
     }
 }

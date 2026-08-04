@@ -2,7 +2,7 @@
   "lang": {
     "label": "option.lang",
     "type": "cycle",
-    "value": ["en", "jp"],
+    "value": ["en", "ja"],
     "registryKey": "lang",
     "default": "en"
   },

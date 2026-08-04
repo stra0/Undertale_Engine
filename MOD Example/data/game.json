@@ -1,0 +1,11 @@
+{
+    "title": "Undertale",
+    "startScene": "titleScene",
+    "language": "en",
+    "data": {
+        "player": "player.json",
+        "itemData": "itemData.json",
+        "items": "items.json",
+        "enemies": "enemies.json"
+    }
+}
