@@ -1,4 +1,4 @@
-import { depth } from './constants.js';
+import { DEPTH } from './constants.js';
 import { HpManager } from './managers.js';
 
 export class UndertaleObject extends Phaser.Physics.Matter.Sprite {
