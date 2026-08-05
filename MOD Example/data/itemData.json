@@ -1,8 +1,18 @@
 {
     "items": {
-        "Pie": {
-            "en": "Pie",
-            "ja": "パイ",
+        "pie": {
+            "name": {
+                "en": "Pie",
+                "ja": "パイ"
+            },
+            "battleText": {
+                "en": [
+                    "You ate the Pie."
+                ],
+                "ja": [
+                    "パイを　たべた。"
+                ]
+            },
             "consumable": true,
             "maxUses": 1,
             "uses": [
@@ -11,9 +21,19 @@
                 }
             ]
         },
-        "I.Noodles": {
-            "en": "I.Noodles",
-            "ja": "インスタントめん",
+        "instant_noodles": {
+            "name": {
+                "en": "I.Noodles",
+                "ja": "インスタントめん"
+            },
+            "battleText": {
+                "en": [
+                    "They're better dry."
+                ],
+                "ja": [
+                    "そのまま　たべたほうが\nおいしい。"
+                ]
+            },
             "consumable": true,
             "maxUses": 1,
             "uses": [
@@ -22,9 +42,19 @@
                 }
             ]
         },
-        "Steak": {
-            "en": "Steak",
-            "ja": "ステーキ",
+        "steak": {
+            "name": {
+                "en": "Steak",
+                "ja": "フェイスステーキ"
+            },
+            "battleText": {
+                "en": [
+                    "You ate the Face Steak."
+                ],
+                "ja": [
+                    "フェイスステーキを　たべた。"
+                ]
+            },
             "consumable": true,
             "maxUses": 1,
             "uses": [
@@ -33,9 +63,19 @@
                 }
             ]
         },
-        "SnowPiece": {
-            "en": "SnowPiece",
-            "ja": "ゆきだるまのかけら",
+        "snow_piece": {
+            "name": {
+                "en": "SnowPiece",
+                "ja": "ゆきだるまのかけら"
+            },
+            "battleText": {
+                "en": [
+                    "You ate the SnowPiece"
+                ],
+                "ja": [
+                    "ゆきだるまのかけらを　たべた。"
+                ]
+            },
             "consumable": true,
             "maxUses": 1,
             "uses": [
@@ -44,14 +84,26 @@
                 }
             ]
         },
-        "L. Hero": {
-            "en": "L. Hero",
-            "ja": "レジェンドヒーロー",
+        "legend_hero": {
+            "name": {
+                "en": "L. Hero",
+                "ja": "レジェンドヒーロー"
+            },
+            "battleText": {
+                "en": [
+                    "You ate the L. Hero."
+                ],
+                "ja": [
+                    "レジェンドヒーローを　たべた。",
+                    "こうげきりょくが　４あがった！"
+                ]
+            },
             "consumable": true,
             "maxUses": 1,
             "uses": [
                 {
-                    "heal": 40
+                    "heal": 40,
+                    "attack": 4
                 }
             ]
         }
