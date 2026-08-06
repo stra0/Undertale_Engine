@@ -176,3 +176,78 @@ export class HpManager {
         }
     }
 }
+
+export class InventoryManager {
+    constructor(data,full=8) {
+        this.data = data;
+        this.full = full;
+    }
+
+    get(index) {
+        return this.data[index];
+    }
+
+    getAll() {
+        return this.data;
+    }
+
+    count() {
+        return this.data.length;
+    }
+
+    isFull() {
+        return this.count() >= this.full;
+    }
+
+    add(id) {
+        if (this.isFull()) return;
+        this.data.push(id);
+    }
+
+    remove(index) {
+        this.data.splice(index,1);
+    }
+
+    clear() {
+        this.data.length = 0;
+    }
+
+    swap(a,b) {
+        [this.data[a],this.data[b]] = [this.data[b],this.data[a]];
+    }
+}
+
+export class ItemManager {
+    constructor(scene,data) {
+        this.scene = scene;
+        this.data = data;
+    }
+
+    get(id) {
+        const item = this.data.items[id];
+
+        if (!item) {
+            throw new Error(`Unknown item id: ${id}`);
+        }
+
+        return item;
+    }
+
+    getName(id) {
+        const lang = this.scene.registry.get("lang");
+        return this.get(id).name[lang];
+    }
+
+    getBattleText(id) {
+        const lang = this.scene.registry.get("lang");
+        return this.get(id).battleText[lang];
+    }
+
+    isConsumable(id) {
+        return this.get(id).consumable;
+    }
+
+    getUse(id,useIndex = 0) {
+        return this.get(id).uses[useIndex];
+    }
+}

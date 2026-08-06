@@ -1,3 +1,5 @@
+import { DEPTH } from './constants.js';
+
 export class MenuCursor {
     constructor({
         rows = 1,
@@ -77,16 +79,27 @@ export class MenuCursor {
 }*/
 
 export class uiContainer extends Phaser.GameObjects.Container {
-    constructor(scene) {
+    constructor(scene,hpManager,playerData) {
         super(scene,30,401);
 
         scene.add.existing(this);
         this.setDepth(DEPTH.BATTLE.UI.LOW);
 
+        this.hpManager = hpManager;
+        this.playerData = playerData
+
         this.createUI();
     }
 
     createUI() {
-        this.scene.drawText(Player_GetName()+"   LV "+string(Player_GetLv()))
+        const playerText = this.scene.drawText(this.playerData.name+"   LV "+this.playerData.lv,this.x,this.y,{
+            fontKey = "dataFont",
+            fontSize = 25,
+            color = 0xffffff,
+            origin = 0
+        });
+        const hp = this.scene.add.sprite(this.x+214,this.y+4,"assets/images/hp");
+        this.add(playerText);
+        this.add(hp);
     }
 }

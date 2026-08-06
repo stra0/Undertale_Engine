@@ -805,15 +805,17 @@ export class BattleSelectScene extends UndertaleScene {
     }
 
     preload() {
-        this.loadSpriteSheet("assets/images/soul/soul","./assets/images/soul/soul.png","./assets/images/soul/soul.json");
-
         this.load.image("assets/images/bone","./assets/images/bone.png");
+        this.load.image("assets/images/hp","./assets/images/hp.png");
+        this.load.image("assets/images/kr","./assets/images/kr.png");
 
         this.load.audio("assets/sounds/snd_heal","./assets/sounds/snd_heal.wav");
         this.load.audio("assets/sounds/snd_hurt","./assets/sounds/snd_hurt.wav");
     }
 
     async onCreate() {
+        await this.loadSpriteSheet("assets/images/soul/soul","./assets/images/soul/soul.png","./assets/images/soul/soul.json");
+
         this._files = new Map();
 
         this.updateables = [];
