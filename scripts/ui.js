@@ -78,28 +78,41 @@ export class MenuCursor {
     }
 }*/
 
-export class uiContainer extends Phaser.GameObjects.Container {
-    constructor(scene,hpManager,playerData) {
+export class UiContainer extends Phaser.GameObjects.Container {
+    constructor(scene,hpManager,playerData,useKr) {
         super(scene,30,401);
 
         scene.add.existing(this);
         this.setDepth(DEPTH.BATTLE.UI.LOW);
 
         this.hpManager = hpManager;
-        this.playerData = playerData
+        this.playerData = playerData;
+        this.useKr = useKr;
 
         this.createUI();
     }
 
     createUI() {
-        const playerText = this.scene.drawText(this.playerData.name+"   LV "+this.playerData.lv,this.x,this.y,{
-            fontKey = "dataFont",
-            fontSize = 25,
-            color = 0xffffff,
-            origin = 0
-        });
-        const hp = this.scene.add.sprite(this.x+214,this.y+4,"assets/images/hp");
+        const fontOption = {
+            fontKey : "dataFont",
+            fontSize : 25,
+            color : 0xffffff,
+            origin : 0
+        }
+        const playerText = this.scene.drawText(this.playerData.name+"   LV "+this.playerData.lv,0,0,fontOption);
         this.add(playerText);
+        const hp = this.scene.add.sprite(214,4,"assets/images/hp");
         this.add(hp);
+        const maxHp_bar = this.scene.add.rectangle(245,-1,this.hpManager.getMaxHp() * 1.25,21,0xC00000).setOrigin(0, 0);
+        if(this.useKr) {
+            const kr_bar = this.scene.add.rectangle(245,-1,this.hpManager.getKr() * 1.25,21,0xFF00FF).setOrigin(0, 0);
+            const kr = this.scene.add.sprite(214,4,"assets/images/kr");
+            this.add(kr_bar);
+            this.add(kr);
+        }
+        const hp_bar = this.scene.add.rectangle(245,-1,this.hpManager.getHp() * 1.25,21,0xFFFF00).setOrigin(0, 0);
+        this.add(hp_bar);
+        const hpText = this.scene.drawText(`${this.hpManager.getHp()} / ${this.hpManager.getMaxHp()}`,245+this.hpManager.getMaxHp()*1.25+14,0,fontOption);
+        this.add(hpText);
     }
 }

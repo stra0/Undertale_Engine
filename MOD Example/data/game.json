@@ -6,6 +6,8 @@
         "player": "player.json",
         "itemData": "itemData.json",
         "items": "items.json",
-        "enemies": "enemies.json"
+        "enemyData": "enemyData.json",
+        "battleData": "battleData.json",
+        "waves": "waveData.json"
     }
 }

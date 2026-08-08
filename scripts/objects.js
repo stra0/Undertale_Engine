@@ -307,8 +307,17 @@ export class Bullet extends UndertaleObject {
     }
 }
 
+export class BulletFactory {
+    static create(scene,data) {
+        switch(data.type) {
+            case "bone":
+                return new Bone(scene,data.x,data.y,data.length,data.ignore,data.destroyOnHit,data.inv,data.damage,data.kr,data.events);
+        }
+    }
+}
+
 export class Bone extends Bullet {
-    constructor(scene,x,y,length,ignore=true,destroyOnHit=false,inv=1000,damage,kr=0,events={hit: "bullet_hit"}){
+    constructor(scene,x=320,y=320,length=10,ignore=true,destroyOnHit=false,inv=1000,damage,kr=0,events={hit: "bullet_hit"}){
         super(
             scene,
             x,

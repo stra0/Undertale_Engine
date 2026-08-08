@@ -14,8 +14,10 @@
     "bone_rain": {
       "timeline": [
         {
-          "time": 0,
-          "type": "bone"
+          "time": 1000,
+          "type": "bone",
+          "x": 320,
+          "y": 260
         }
       ]
     }

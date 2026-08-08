@@ -1,0 +1,24 @@
+{
+    "battles": {
+        "sans_fight": {
+            "enemies": ["sans"],
+            "isFirstPlayerTurn": false,
+            "dialogues": [
+                {
+                    "priority": 1000,
+                    "condition": {
+                        "turn": 1
+                    },
+                    "text": {
+                        "en": ["Just keep attacking."],
+                        "ja": ["こうげきを　つづけろ"]
+                    }
+                }
+            ],
+            "waves": [
+                "intro_bone",
+                "bone_rain"
+            ]
+        }
+    }
+}
