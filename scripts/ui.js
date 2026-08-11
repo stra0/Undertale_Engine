@@ -108,8 +108,8 @@ export class UiContainer extends Phaser.GameObjects.Container {
         this.add(this.maxHp_bar)
         if(this.useKr) {
             this.kr_bar = this.scene.add.rectangle(245,-1,this.hpManager.getKr() * 1.25,21,0xFF00FF).setOrigin(0, 0);
-            this.kr = this.scene.add.sprite(276+offset,8,"assets/images/kr");
-            offset += 30;
+            this.kr = this.scene.add.sprite(261+offset,8,"assets/images/kr");
+            offset += 47;
             this.add(this.kr_bar);
             this.add(this.kr);
         }
