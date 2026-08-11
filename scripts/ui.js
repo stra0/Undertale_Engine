@@ -94,7 +94,7 @@ export class UiContainer extends Phaser.GameObjects.Container {
     createUI() {
         const fontOption = {
             fontKey : "dataFont",
-            fontSize : 25,
+            fontSize : 18,
             color : 0xffffff,
             origin : 0
         }
