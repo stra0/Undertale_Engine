@@ -101,19 +101,19 @@ export class UiContainer extends Phaser.GameObjects.Container {
         let offset = 0;
         this.playerText = this.scene.drawText(this.scene.playerData.name+"   LV "+this.scene.playerData.lv,0,0,fontOption);
         this.add(this.playerText);
-        this.hp = this.scene.add.sprite(214,10,"assets/images/hp");
+        this.hp = this.scene.add.sprite(216,10,"assets/images/hp");
         this.add(this.hp);
         offset = this.hpManager.getMaxHp() * 1.25;
-        this.maxHp_bar = this.scene.add.rectangle(245,-1,offset,21,0xC00000).setOrigin(0, 0);
+        this.maxHp_bar = this.scene.add.rectangle(244,-1,offset,21,0xC00000).setOrigin(0, 0);
         this.add(this.maxHp_bar)
         if(this.useKr) {
-            this.kr_bar = this.scene.add.rectangle(245,-1,this.hpManager.getKr() * 1.25,21,0xFF00FF).setOrigin(0, 0);
-            this.kr = this.scene.add.sprite(264+offset,10,"assets/images/kr");
+            this.kr_bar = this.scene.add.rectangle(244,-1,this.hpManager.getKr() * 1.25,21,0xFF00FF).setOrigin(0, 0);
+            this.kr = this.scene.add.sprite(266+offset,10,"assets/images/kr");
             offset += 39;
             this.add(this.kr_bar);
             this.add(this.kr);
         }
-        this.hp_bar = this.scene.add.rectangle(245,-1,this.hpManager.getHp() * 1.25,21,0xFFFF00).setOrigin(0, 0);
+        this.hp_bar = this.scene.add.rectangle(244,-1,this.hpManager.getHp() * 1.25,21,0xFFFF00).setOrigin(0, 0);
         this.add(this.hp_bar);
         this.hpText = this.scene.drawText(`${this.hpManager.getHp()} / ${this.hpManager.getMaxHp()}`,245+offset+14,0,fontOption);
         this.add(this.hpText);
