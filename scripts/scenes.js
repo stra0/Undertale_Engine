@@ -1007,9 +1007,9 @@ export class BattleScene extends UndertaleScene {
         this.soul = new RedSoul(this,320,320,this.board);
         const bone = new Bone(this,320,320,20);
         
-        const battle = this.cache.get.json("data/battleData");
-        const enemyData = this.cache.get.json("data/enemyData").enemies;
-        this.playerData = this.cache.get.json("data/player");
+        const battle = this.cache.json.get("data/battleData");
+        const enemyData = this.cache.json.get("data/enemyData").enemies;
+        this.playerData = this.cache.json.get("data/player");
         const useKr = battle.enemies.some(id => enemyData[id].isKr);
 
         this.uiContainer = new UiContainer(this,this.soul.hpManager,useKr);
