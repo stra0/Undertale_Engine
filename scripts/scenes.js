@@ -990,11 +990,7 @@ export class BattleScene extends UndertaleScene {
     }
 
     onCreate() {
-        alert(Object.keys(this.textures.list).join("\n"));
-        alert(this.textures.exists("assets/images/soul/soul"));
         const tex = this.textures.get("assets/images/soul/soul");
-        alert(tex.frameTotal);
-        alert(tex.frames);
         for (const assets of this.files.values()) {
             for (const asset of assets) {
                 if (asset.url?.startsWith("blob:")) {
