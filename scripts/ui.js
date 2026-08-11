@@ -79,14 +79,13 @@ export class MenuCursor {
 }*/
 
 export class UiContainer extends Phaser.GameObjects.Container {
-    constructor(scene,hpManager,playerData,useKr) {
+    constructor(scene,hpManager,useKr) {
         super(scene,30,401);
 
         scene.add.existing(this);
         this.setDepth(DEPTH.BATTLE.UI.LOW);
 
         this.hpManager = hpManager;
-        this.playerData = playerData;
         this.useKr = useKr;
 
         this.createUI();
@@ -99,20 +98,21 @@ export class UiContainer extends Phaser.GameObjects.Container {
             color : 0xffffff,
             origin : 0
         }
-        const playerText = this.scene.drawText(this.playerData.name+"   LV "+this.playerData.lv,0,0,fontOption);
-        this.add(playerText);
-        const hp = this.scene.add.sprite(214,4,"assets/images/hp");
-        this.add(hp);
-        const maxHp_bar = this.scene.add.rectangle(245,-1,this.hpManager.getMaxHp() * 1.25,21,0xC00000).setOrigin(0, 0);
+        this.playerText = this.scene.drawText(this.scene.playerData.name+"   LV "+this.scene.playerData.lv,0,0,fontOption);
+        this.add(this.playerText);
+        this.hp = this.scene.add.sprite(214,4,"assets/images/hp");
+        this.add(this.hp);
+        this.maxHp_bar = this.scene.add.rectangle(245,-1,this.hpManager.getMaxHp() * 1.25,21,0xC00000).setOrigin(0, 0);
+        this.add(this.maxHp_bar)
         if(this.useKr) {
-            const kr_bar = this.scene.add.rectangle(245,-1,this.hpManager.getKr() * 1.25,21,0xFF00FF).setOrigin(0, 0);
-            const kr = this.scene.add.sprite(214,4,"assets/images/kr");
-            this.add(kr_bar);
-            this.add(kr);
+            this.kr_bar = this.scene.add.rectangle(245,-1,this.hpManager.getKr() * 1.25,21,0xFF00FF).setOrigin(0, 0);
+            this.kr = this.scene.add.sprite(214,4,"assets/images/kr");
+            this.add(this.kr_bar);
+            this.add(this.kr);
         }
-        const hp_bar = this.scene.add.rectangle(245,-1,this.hpManager.getHp() * 1.25,21,0xFFFF00).setOrigin(0, 0);
-        this.add(hp_bar);
-        const hpText = this.scene.drawText(`${this.hpManager.getHp()} / ${this.hpManager.getMaxHp()}`,245+this.hpManager.getMaxHp()*1.25+14,0,fontOption);
-        this.add(hpText);
+        this.hp_bar = this.scene.add.rectangle(245,-1,this.hpManager.getHp() * 1.25,21,0xFFFF00).setOrigin(0, 0);
+        this.add(this.hp_bar);
+        this.hpText = this.scene.drawText(`${this.hpManager.getHp()} / ${this.hpManager.getMaxHp()}`,245+this.hpManager.getMaxHp()*1.25+14,0,fontOption);
+        this.add(this.hpText);
     }
 }
