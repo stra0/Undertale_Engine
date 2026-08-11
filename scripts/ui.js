@@ -100,13 +100,13 @@ export class UiContainer extends Phaser.GameObjects.Container {
         }
         this.playerText = this.scene.drawText(this.scene.playerData.name+"   LV "+this.scene.playerData.lv,0,0,fontOption);
         this.add(this.playerText);
-        this.hp = this.scene.add.sprite(214,5,"assets/images/hp");
+        this.hp = this.scene.add.sprite(214,6,"assets/images/hp");
         this.add(this.hp);
         this.maxHp_bar = this.scene.add.rectangle(245,-1,this.hpManager.getMaxHp() * 1.25,21,0xC00000).setOrigin(0, 0);
         this.add(this.maxHp_bar)
         if(this.useKr) {
             this.kr_bar = this.scene.add.rectangle(245,-1,this.hpManager.getKr() * 1.25,21,0xFF00FF).setOrigin(0, 0);
-            this.kr = this.scene.add.sprite(214,5,"assets/images/kr");
+            this.kr = this.scene.add.sprite(214,6,"assets/images/kr");
             this.add(this.kr_bar);
             this.add(this.kr);
         }
