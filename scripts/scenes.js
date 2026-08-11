@@ -1,6 +1,6 @@
 import { SaveManager } from './core.js';
 import { InputManager, SoundManager, HpManager } from './managers.js';
-import { MenuCursor,} from './ui.js';
+import { MenuCursor,UiContainer} from './ui.js';
 import { Board, RedSoul, Bone } from './objects.js';
 import { normalizeKey } from './constants.js';
 
