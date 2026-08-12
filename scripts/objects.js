@@ -317,7 +317,7 @@ export class BulletFactory {
 }
 
 export class Bone extends Bullet {
-    constructor(scene,x=320,y=320,length=10,ignore=true,destroyOnHit=false,inv=1000,damage,kr=0,events={hit: "bullet_hit"}){
+    constructor(scene,x=320,y=320,length=10,ignore=true,destroyOnHit=false,inv=1000,damage=1,kr=1,events={hit: "bullet_hit"}){
         super(
             scene,
             x,
