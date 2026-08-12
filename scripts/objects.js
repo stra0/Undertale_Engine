@@ -160,7 +160,11 @@ export class Soul extends UndertaleObject {
 
         this.setTint(color);
 
-        this.setFrame("1");
+alert(this.soul.displayWidth);
+alert(this.soul.displayHeight);
+alert(this.soul.width);
+        this.setFrame(1);
+alert(this.soul.width);
 
         this.color = color;
 
