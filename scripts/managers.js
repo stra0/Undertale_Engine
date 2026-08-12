@@ -168,7 +168,7 @@ export class HpManager {
             let interval = 0;
             if (this.kr >= 40)       interval = 16.66;
             else if (this.kr >= 30)  interval = 50;
-            else if (this.kr >= 15)  interval = 100;
+            else if (this.kr >= 15)  interval = 133.33;
             else if (this.kr >= 10)  interval = 550;
             else if (this.kr >= 5)   interval = 833.33;
             else interval = 1083.3;
