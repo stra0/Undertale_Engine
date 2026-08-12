@@ -150,6 +150,7 @@ export class HpManager {
         if (this.hp + this.kr > this.maxHp) this.hp = this.maxHp-this.kr;
 
         if (this.hp <= 0) {
+            alert("hpcheck")
             if (this.kr > 0) {
                 this.hp = 1;
             } else {
