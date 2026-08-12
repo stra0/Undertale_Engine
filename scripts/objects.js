@@ -278,6 +278,8 @@ export class Bullet extends UndertaleObject {
     constructor(scene,x,y,baseWidth,baseHeight,scaleX,scaleY,texture,destroyOnHit,destroyOutsideBoard,ignore,inv,damage,kr=0,Depth=DEPTH.BATTLE.BULLET.INSIDE,events={hit: "bullet_hit"}) {
         super(scene,x,y,texture,Depth);
 
+        scene.bullets.push(this);
+
         this.baseWidth = baseWidth;
         this.baseHeight = baseHeight;
 

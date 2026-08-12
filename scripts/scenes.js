@@ -999,6 +999,7 @@ export class BattleScene extends UndertaleScene {
             }
         }
         this.updateables = [];
+        this.bullets = [];
 
         const battle = this.cache.json.get("data/battleData");
         const enemyData = this.cache.json.get("data/enemyData").enemies;
@@ -1019,11 +1020,24 @@ export class BattleScene extends UndertaleScene {
         })
     }
 
+    removeBullets() {
+        for (const bullet of this.bullets) {
+            bullet.destroy();
+        }
+
+        this.bullets.length = 0;
+    }
+
     gameOver() {
         this.updateables.length = 0;
-        this.updateables.push(this.soul);
+        this.removeBullets();
+        this.uiContainer.destroy();
+        this.board.destroy();
+
         this.time.delayedCall(400,() => {
+            alert("発火")
             this.soul.setFrame(1);
+            alert("成功")
         });
         this.time.delayedCall(1800,() => {
             this.soul.break();
