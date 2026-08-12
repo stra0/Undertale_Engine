@@ -1035,14 +1035,7 @@ export class BattleScene extends UndertaleScene {
         this.board.destroy();
 
         this.time.delayedCall(400,() => {
-            alert(typeof this.soul.setFrame);
-
-    try {
-        this.soul.setFrame(1);
-        alert("成功");
-    } catch (e) {
-        alert(e);
-    }
+            this.soul.setFrame(1,false,false);
         });
         this.time.delayedCall(1800,() => {
             this.soul.break();
