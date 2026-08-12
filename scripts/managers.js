@@ -154,6 +154,7 @@ export class HpManager {
                 this.hp = 1;
             } else {
                 this.hp = 0;
+                this.kr = 0;
                 this.scene.events.emit("player_dead");
             }
         }
