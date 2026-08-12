@@ -250,13 +250,13 @@ export class SoulShards extends UndertaleObject {
 
         this.speed = Math.random() * 70;
         this.gravity = (Math.random()-0.7) * 90;
+        alert(this.scene.anims.exists("spin_shards"));
         this.play("spin_shards");
     }
 
     update0(time,delta) {
         const deltaTime = delta /1000;
         this.setPosition(this.x + this.speed * deltaTime,this.y + this.gravity * deltaTime);
-        this.play("spin_shards");
         this.gravity += 8;
     }
 }
