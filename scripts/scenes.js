@@ -1039,6 +1039,7 @@ export class BattleScene extends UndertaleScene {
         });
         this.time.delayedCall(1800,() => {
             this.soul.break();
+            this.soul.destroy();
         });
     }
 

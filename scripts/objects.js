@@ -254,7 +254,8 @@ export class SoulShards extends UndertaleObject {
     }
 
     update0(time,delta) {
-        this.setPosition(this.x + this.speed * delta,this.gravity * delta);
+        const deltaTime = delta /1000;
+        this.setPosition(this.x + this.speed * deltaTime,this.gravity * deltaTime);
         this.gravity -= 1;
     }
 }
