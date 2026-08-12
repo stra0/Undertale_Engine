@@ -83,8 +83,11 @@ export class UndertaleObject extends Phaser.Physics.Matter.Sprite {
         };
     }
 
-    update0(time, delta) {
+    play(name) {
+        return super.play(`${this.texture.key}:${name}`)
     }
+
+    update0(time, delta) {}
     update1(time, delta) {}
     update2(time, delta) {}
 }
