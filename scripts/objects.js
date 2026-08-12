@@ -224,7 +224,6 @@ export class Soul extends UndertaleObject {
     break() {
         for (let i = 0;i<6;i++) {
             const shard = new SoulShards(this.scene,this.x,this.y,this.color);
-            shard.play("spin_shards");
         }
     }
 
@@ -250,13 +249,14 @@ export class SoulShards extends UndertaleObject {
         this.setRectangle(this.baseRectangle,this.baseRectangle);
 
         this.speed = Math.random() * 40;
-        this.gravity = (Math.random()-0.35) * 70;
+        this.gravity = (Math.random()-0.65) * 70;
+        this.play("spin_shards");
     }
 
     update0(time,delta) {
         const deltaTime = delta /1000;
-        this.setPosition(this.x + this.speed * deltaTime,this.gravity * deltaTime);
-        this.gravity -= 1;
+        this.setPosition(this.x + this.speed * deltaTime,this.y + this.gravity * deltaTime);
+        this.gravity += 1;
     }
 }
 
