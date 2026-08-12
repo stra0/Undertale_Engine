@@ -160,6 +160,8 @@ export class Soul extends UndertaleObject {
 
         this.setTint(color);
 
+        this.setFrame(1);
+
         this.color = color;
 
         this.baseScale = 1;
