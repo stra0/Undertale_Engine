@@ -164,7 +164,7 @@ alert(this.displayWidth);
 alert(this.displayHeight);
 alert(this.width);
         this.setFrame(1);
-alert(this.soul.width);
+alert(this.width);
 
         this.color = color;
 
