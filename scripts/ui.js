@@ -83,6 +83,7 @@ export class UiContainer extends Phaser.GameObjects.Container {
         super(scene,30,401);
 
         scene.add.existing(this);
+        scene.updateables.push(this);
         this.setDepth(DEPTH.BATTLE.UI.LOW);
 
         this.hpManager = hpManager;
