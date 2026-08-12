@@ -255,11 +255,14 @@ export class SoulShards extends UndertaleObject {
         this.gravity = (Math.random()-0.7) * 90;
         try {
             this.play("spin_shards");
-        alert("成功");
     } catch (e) {
         alert(e);
     }
     }
+
+    setFrame(frame) {
+    return super.setFrame(frame, false, false);
+}
 
     update0(time,delta) {
         const deltaTime = delta /1000;
