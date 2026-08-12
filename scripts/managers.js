@@ -131,10 +131,12 @@ export class HpManager {
         this.hp -= damage;
         if (this.hp > 0) {
             this.kr += kr;
-            } else {
-            this.hp = 1;
-            this.kr -= damage;
+        } else {
+            if (this.kr > 0) {
+                this.hp = 1;
+                this.kr -= damage;
             }
+        }
         this.inv = inv;
         this.scene.soundManager.playSE("assets/sounds/snd_hurt");
         this.checkHp();
@@ -150,7 +152,6 @@ export class HpManager {
         if (this.hp + this.kr > this.maxHp) this.hp = this.maxHp-this.kr;
 
         if (this.hp <= 0) {
-            alert("hpcheck")
             if (this.kr > 0) {
                 this.hp = 1;
             } else {

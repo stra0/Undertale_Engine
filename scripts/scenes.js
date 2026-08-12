@@ -1015,7 +1015,6 @@ export class BattleScene extends UndertaleScene {
 
     addEvents() {
         this.events.on("player_dead",() => {
-            alert("gameover");
             this.gameOver();
         })
     }
