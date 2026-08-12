@@ -155,7 +155,7 @@ export class Board extends Phaser.GameObjects.Graphics {
 }
 
 export class Soul extends UndertaleObject {
-    constructor(scene,x,y,board,color=0xffffff) {
+    constructor(scene,x,y,board,playerData,color=0xffffff) {
         super(scene,x,y,"assets/images/soul/soul",DEPTH.BATTLE.BOARD);
 
         this.setTint(color);
@@ -167,7 +167,7 @@ export class Soul extends UndertaleObject {
         this.hw = 8;
         this.hh = 8;
 
-        this.hpManager = new HpManager(scene,92,92,this);
+        this.hpManager = new HpManager(scene,playerData.maxHp,playerData.hp,this);
 
         this.inv = 0;
 
@@ -230,8 +230,8 @@ export class Soul extends UndertaleObject {
 }
 
 export class RedSoul extends Soul {
-    constructor(scene,x,y,board) {
-        super(scene,x,y,board,0xff0000);
+    constructor(scene,x,y,board,playerData) {
+        super(scene,x,y,board,playerData,0xff0000);
     }
 
     update0(time,delta) {

@@ -999,14 +999,15 @@ export class BattleScene extends UndertaleScene {
             }
         }
         this.updateables = [];
-        this.board = new Board(this,320,320,566,130);
-        this.soul = new RedSoul(this,320,320,this.board);
-        const bone = new Bone(this,320,320,20);
-        
+
         const battle = this.cache.json.get("data/battleData");
         const enemyData = this.cache.json.get("data/enemyData").enemies;
         this.playerData = this.cache.json.get("data/player");
         const useKr = battle.battles.sans_fight.enemies.some(id => enemyData[id].useKr);
+
+        this.board = new Board(this,320,320,566,130);
+        this.soul = new RedSoul(this,320,320,this.board,playerData);
+        const bone = new Bone(this,320,320,20);
 
         this.uiContainer = new UiContainer(this,this.soul.hpManager,useKr);
     }
@@ -1022,6 +1023,10 @@ export class BattleScene extends UndertaleScene {
 
         for (const obj of this.updateables) {
             obj.update2?.(time,delta);
+        }
+
+        for (const obj of this.updateables) {
+            obj.refresh?.();
         }
     }
 
