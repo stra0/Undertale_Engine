@@ -1035,7 +1035,9 @@ export class BattleScene extends UndertaleScene {
         this.board.destroy();
 
         this.time.delayedCall(400,() => {
-            alert("発火")
+            alert(this.soul.texture.key);
+    alert(this.soul.frame.name);
+    alert(this.soul.texture.frameTotal);
             this.soul.setFrame(1);
             alert("成功")
         });
