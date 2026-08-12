@@ -97,6 +97,7 @@ export class HpManager {
         this.inv = 0;
 
         this.damageTimer = 0;
+        this.krTimer = 0;
 
         this.scene.events.on("bullet_hit",this.onHit,this);
 
@@ -161,18 +162,38 @@ export class HpManager {
     update1(time,delta) {}
 
     update2(time,delta) {
+        if (this.kr > 0) {
+            this.krTimer += delta;
+
+            let interval = 0;
+            if (this.kr >= 40)       interval = 16.66;
+            else if (this.kr >= 30)  interval = 50;
+            else if (this.kr >= 15)  interval = 100;
+            else if (this.kr >= 10)  interval = 833.33;
+            else if (this.kr >= 5)   interval = 1083.3;
+
+            if (interval > 0) {
+                while (this.krTimer >= interval && this.kr > 0) {
+                    this.kr -= 1;
+                    this.krTimer -= interval;
+                }
+            }
+            if (this.kr <= 0) {
+                this.kr = 0;
+                this.krTimer = 0;
+            }
+        }
         if (this.inv > 0) {
             this.inv -= delta;
             if (this.inv < 0) this.inv = 0;
         }
         if (this.nextDamageSource) {
             this.damageTimer += delta;
-            const source = this.nextDamageSource;
             while (this.damageTimer >= 16.66) {
                 this.damageTimer -= 16.66;
-                this.damage(source.damage,source.inv,source.kr);
-                this.nextDamageSource = null;
+                this.damage(this.nextDamageSource.damage,this.nextDamageSource.inv,this.nextDamageSource.kr);
             }
+            this.nextDamageSource = null;
         }
     }
 }

@@ -116,7 +116,7 @@ export class UiContainer extends Phaser.GameObjects.Container {
         }
         this.hp_bar = this.scene.add.rectangle(242,-1,this.hpManager.getHp() * 1.25,21,0xFFFF00).setOrigin(0, 0);
         this.add(this.hp_bar);
-        this.hpText = this.scene.drawText(`${this.hpManager.getHp()} / ${this.hpManager.getMaxHp()}`,245+offset+14,0,fontOption);
+        this.hpText = this.scene.drawText(`${this.hpManager.getHp() + this.hpManager.getKr()} / ${this.hpManager.getMaxHp()}`,245+offset+14,0,fontOption);
         this.add(this.hpText);
     }
 
@@ -140,6 +140,6 @@ export class UiContainer extends Phaser.GameObjects.Container {
             }
         }
         this.hp_bar.setSize(this.hpManager.getHp() * 1.25, 21);
-        this.hpText.setText(`${this.hpManager.getHp()} / ${this.hpManager.getMaxHp()}`);
+        this.hpText.setText(`${this.hpManager.getHp() + this.hpManager.getKr()} / ${this.hpManager.getMaxHp()}`);
     }
 }
