@@ -127,7 +127,7 @@ export class UiContainer extends Phaser.GameObjects.Container {
 
     refresh() {
         this.playerText.setText(this.scene.playerData.name+"   LV "+this.scene.playerData.lv);
-        this.maxHp_bar.setSize(this.hpManager.getMaxHp() * 1.25;,21);
+        this.maxHp_bar.setSize(this.hpManager.getMaxHp() * 1.25,21);
         if(this.useKr) {
             this.kr_bar = this.scene.add.rectangle(242,-1,this.hpManager.getKr() * 1.25,21,0xFF00FF).setOrigin(0, 0);
             this.kr = this.scene.add.sprite(266+offset,9,"assets/images/kr");
