@@ -1010,6 +1010,24 @@ export class BattleScene extends UndertaleScene {
         const bone = new Bone(this,240,320,20);
 
         this.uiContainer = new UiContainer(this,this.soul.hpManager,useKr);
+        this.addEvents();
+    }
+
+    addEvents() {
+        this.events.on("player_dead", () => {
+            this.gameOver();
+        })
+    }
+
+    gameOver() {
+        this.updateables.length = 0;
+        this.updateables.push(this.soul);
+        this.time.delayedCall(400,() => {
+            this.soul.setFrame(1);
+        });
+        this.time.delayedCall(1800,() => {
+            this.soul.break();
+        });
     }
 
     onUpdate(time,delta) {

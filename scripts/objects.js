@@ -156,9 +156,11 @@ export class Board extends Phaser.GameObjects.Graphics {
 
 export class Soul extends UndertaleObject {
     constructor(scene,x,y,board,playerData,color=0xffffff) {
-        super(scene,x,y,"assets/images/soul/soul",DEPTH.BATTLE.BOARD);
+        super(scene,x,y,"assets/images/soul/soul",DEPTH.BATTLE.SOUL);
 
         this.setTint(color);
+
+        this.color = color;
 
         this.baseScale = 1;
         this.baseRectangle = 4;
@@ -219,6 +221,13 @@ export class Soul extends UndertaleObject {
         this.controls = controls;
     }
 
+    break() {
+        for (let i = 0;i<6;i++) {
+            const shard = new SoulShards(this.scene,this.x,this.y,this.color);
+            shard.play("spin_shards");
+        }
+    }
+
 
     update0(time,delta) {
         this.clampToRotateBox(this.board);
@@ -227,6 +236,27 @@ export class Soul extends UndertaleObject {
     update1(time,delta){}
 
     update2(time,delta) {}
+}
+
+export class SoulShards extends UndertaleObject {
+    constructor(scene,x,y,color) {
+        super(scene,x,y,"assets/images/soul/soul",DEPTH.BATTLE.SOUL);
+
+        this.setTint(color);
+
+        this.baseScale = 1;
+        this.baseRectangle = 4;
+        this.setScale(this.baseScale);
+        this.setRectangle(this.baseRectangle,this.baseRectangle);
+
+        this.speed = Math.random() * 40;
+        this.gravity = (Math.random()-0.35) * 70;
+    }
+
+    update0(time,delta) {
+        this.setPosition(this.x + this.speed * delta,this.gravity * delta);
+        this.gravity -= 1;
+    }
 }
 
 export class RedSoul extends Soul {

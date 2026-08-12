@@ -33,18 +33,19 @@ export class InputManager {
             .some(key => Phaser.Input.Keyboard.JustUp(key));
     }
     isRepeated(action, delay = 300, interval = 60) {
-        const key = this.getKeys(action)[0];
-        if (!key) return false;
+        return this.getKeys(action).some(key => {
+            const duration = key.getDuration();
 
-        const duration = key.getDuration();
+            if (Phaser.Input.Keyboard.JustDown(key)) {
+                return true;
+            }
 
-        if (Phaser.Input.Keyboard.JustDown(key)) return true;
+            if (key.isDown && duration > delay) {
+                return (duration - delay) % interval < 16;
+            }
 
-        if (key.isDown && duration > delay) {
-            return (duration - delay) % interval < 16;
-        }
-
-        return false;
+            return false;
+        });
     }
 }
 
@@ -152,7 +153,8 @@ export class HpManager {
             if (this.kr > 0) {
                 this.hp = 1;
             } else {
-                this.scene.events.emit("gameover");
+                this.hp = 0;
+                this.scene.events.emit("player_dead");
             }
         }
     }
@@ -168,7 +170,8 @@ export class HpManager {
             let interval = 0;
             if (this.kr >= 40)       interval = 16.66;
             else if (this.kr >= 30)  interval = 50;
-            else if (this.kr >= 15)  interval = 133.33;
+            else if (this.kr >= 22)  interval = 133.33;
+            else if (this.kr >= 15)  interval = 300;
             else if (this.kr >= 10)  interval = 550;
             else if (this.kr >= 5)   interval = 833.33;
             else interval = 1083.3;
