@@ -253,6 +253,18 @@ export class SoulShards extends UndertaleObject {
 
         this.speed = Math.random() * 70;
         this.gravity = (Math.random()-0.7) * 90;
+
+        const anim = this.anims.animationManager.get("assets/images/soul/soul:spin_shards");
+
+alert(
+    "animation = " + !!anim +
+    "\nframes = " + anim?.frames.length +
+    "\ntextureKey = " + anim?.frames[0]?.textureKey +
+    "\ntextureFrame = " + anim?.frames[0]?.textureFrame +
+    "\nframe exists = " + !!anim?.frames[0]?.frame +
+    "\nframe width = " + anim?.frames[0]?.frame?.width +
+    "\nframe height = " + anim?.frames[0]?.frame?.height
+);
         try {
             this.play("spin_shards");
     } catch (e) {
