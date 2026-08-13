@@ -275,6 +275,7 @@ navigator.clipboard.writeText(a);
         e.stack;
 
     alert(errorText);
+    navigator.clipboard.writeText(errorText);
     }
     }
 
