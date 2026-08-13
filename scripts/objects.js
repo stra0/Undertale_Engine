@@ -261,13 +261,14 @@ export class SoulShards extends UndertaleObject {
     }
 
     setFrame(frame) {
-        alert(
-        "frame = " + frame +
-        "\ntype = " + typeof frame +
-        "\ncurrentFrame = " + this.anims.currentFrame +
-        "\ncurrentFrame.textureFrame = " +
-        (this.anims.currentFrame?.textureFrame)
+    alert(
+        "argument = " + frame +
+        "\narguments.length = " + arguments.length +
+        "\narg0 = " + arguments[0] +
+        "\narg1 = " + arguments[1] +
+        "\narg2 = " + arguments[2]
     );
+
     return super.setFrame(frame, false, false);
 }
 

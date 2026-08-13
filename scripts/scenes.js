@@ -120,15 +120,6 @@ export class UndertaleScene extends Phaser.Scene {
                 for (const [animName, anim] of Object.entries(config.animations)) {
                     const animKey = `${key}:${animName}`;
                     if (!this.anims.exists(animKey)) {
-
-                        const frames = this.anims.generateFrameNumbers(key, {
-    frames: anim.frames
-});
-
-alert(frames[0].frame);
-alert(frames[1].frame);
-alert(frames[2].frame);
-alert(frames[3].frame);
                         
                         this.anims.create({
                             key: animKey,
