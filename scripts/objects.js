@@ -260,19 +260,6 @@ export class SoulShards extends UndertaleObject {
     }
     }
 
-    setFrame(frame) {
-        navigator.clipboard.writeText("frame = " + frame +
-        "\n\n" +
-        new Error().stack);
-    alert(
-        "frame = " + frame +
-        "\n\n" +
-        new Error().stack
-    );
-
-    return super.setFrame(frame, false, false);
-}
-
     update0(time,delta) {
         const deltaTime = delta /1000;
         this.setPosition(this.x + this.speed * deltaTime,this.y + this.gravity * deltaTime);
