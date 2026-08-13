@@ -261,6 +261,7 @@ export class SoulShards extends UndertaleObject {
     }
 
     setFrame(frame) {
+        alert("SoulShards.setFrame: " + frame);
     return super.setFrame(frame, false, false);
 }
 
