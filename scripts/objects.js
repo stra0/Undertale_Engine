@@ -256,7 +256,14 @@ export class SoulShards extends UndertaleObject {
         try {
             this.play("spin_shards");
     } catch (e) {
-        alert(e);
+        const errorText =
+        e.name + ": " + e.message +
+        "\n\n" +
+        e.stack;
+
+    alert(errorText);
+
+    navigator.clipboard.writeText(errorText);
     }
     }
 
