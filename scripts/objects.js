@@ -261,6 +261,9 @@ export class SoulShards extends UndertaleObject {
     }
 
     setFrame(frame) {
+        navigator.clipboard.writeText("frame = " + frame +
+        "\n\n" +
+        new Error().stack);
     alert(
         "frame = " + frame +
         "\n\n" +
