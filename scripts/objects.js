@@ -299,7 +299,7 @@ export class SoulShards extends UndertaleObject {
 
         this.setTint(color);
 
-        this.baseScale = 1;
+        this.baseScale = 0.5;
         this.baseRectangle = 4;
         this.setScale(this.baseScale);
         this.setRectangle(this.baseRectangle,this.baseRectangle);
