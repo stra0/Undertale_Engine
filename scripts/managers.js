@@ -84,7 +84,7 @@ export class SoundManager {
     }
 
     stopAll() {
-        this.scene.stopAll();
+        this.scene.sound.stopAll();
         this.bgm = null;
     }
 }
