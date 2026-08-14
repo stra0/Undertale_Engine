@@ -20,6 +20,10 @@ export class UndertaleObject extends Phaser.Physics.Matter.Sprite {
 
         this.offsetX = 0;
         this.offsetY = 0;
+
+        this.playingAnim = null;
+        this.animTimer = 0;
+        this.animData = null;
     }
 
     applyCustomPhysics() {
@@ -83,13 +87,62 @@ export class UndertaleObject extends Phaser.Physics.Matter.Sprite {
         };
     }
 
-    play(name) {
-        return super.play(`${this.texture.key}:${name}`)
+    animPlay(name) {
+        this.animTimer = 0;
+
+        const anim =  this.anims.get(`${this.texture.key}:${name}`);
+        if (!anim) {
+            throw new Error(
+                `Animation not found: ${this.texture.key}:${name}`
+            );
+        }
+        const data = {
+            frame: anim.frames,
+            frameRate: anim.frameRate,
+            repeat: anim.repeat,
+            length: anim.frames.length,
+            interval: 1000/anim.frameRate
+        }
+        this.animData = data;
+
+        this.playingAnim = true;
+
+        this.setFrame(anim.frames[0].textureFrame,false,false);
+
+        return this;
+    }
+
+    setAnimFrame(delta) {
+        if (!this.playingAnim) return;
+        this.animTimer += delta;
+
+        while(this.animTimer >= this.animData.interval) {
+            this.animTimer -= this.animData.interval;
+
+            const currentFrame = this.frame.name;
+            const currentIndex = this.animData.frame.findIndex(f => f.textureFrame === currentFrame);
+            if (this.animData.length-1 <= currentIndex) {
+                this.setFrame(this.animData.frame[0].textureFrame,false,false);
+                this.animData.repeat -= 1;
+                if (this.animData.repeat === 0) {
+                    this.playingAnim = null;
+                    this.animTimer = 0;
+                    this.animData = null;
+                }
+                break;
+            }
+            const nextFrame = this.animData.frame[currentIndex + 1];
+            this.setFrame(nextFrame.textureFrame,false,false);
+        }
     }
 
     update0(time, delta) {}
     update1(time, delta) {}
     update2(time, delta) {}
+
+    refresh(time,delta) {
+        this.setAnimFrame(delta);
+    }
 }
 
 export class Board extends Phaser.GameObjects.Graphics {
@@ -253,21 +306,8 @@ export class SoulShards extends UndertaleObject {
 
         this.speed = Math.random() * 70;
         this.gravity = (Math.random()-0.7) * 90;
-
-        const a = "width = " + this.width +
-    "\nheight = " + this.height +
-    "\ndisplayWidth = " + this.displayWidth +
-    "\ndisplayHeight = " + this.displayHeight +
-    "\noriginX = " + this.originX +
-    "\noriginY = " + this.originY +
-    "\nframe = " + this.frame
-
-        alert(
-    a
-);
-navigator.clipboard.writeText(a);
         try {
-            this.play("spin_shards");
+            this.animPlay("spin_shards");
     } catch (e) {
         const errorText =
         e.name + ": " + e.message +

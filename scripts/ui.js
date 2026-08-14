@@ -126,7 +126,7 @@ export class UiContainer extends Phaser.GameObjects.Container {
 
     update2() {}
 
-    refresh() {
+    refresh(time,delta) {
         this.playerText.setText(this.scene.playerData.name+"   LV "+this.scene.playerData.lv);
         this.maxHp_bar.setSize(this.hpManager.getMaxHp() * 1.25,21);
         if(this.useKr) {

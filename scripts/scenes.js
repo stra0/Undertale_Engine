@@ -1058,7 +1058,7 @@ export class BattleScene extends UndertaleScene {
         }
 
         for (const obj of this.updateables) {
-            obj.refresh?.();
+            obj.refresh?.(time,delta);
         }
     }
 
