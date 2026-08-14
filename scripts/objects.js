@@ -305,7 +305,7 @@ export class SoulShards extends UndertaleObject {
         this.setRectangle(this.baseRectangle,this.baseRectangle);
 
         this.speed = (Math.random()-0.5) * 100;
-        this.gravity = (Math.random()-0.7) * 130;
+        this.gravity = (Math.random()-0.7) * 200;
         this.animPlay("spin_shards");
     }
 
