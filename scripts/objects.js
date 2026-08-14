@@ -90,7 +90,7 @@ export class UndertaleObject extends Phaser.Physics.Matter.Sprite {
     animPlay(name) {
         this.animTimer = 0;
 
-        const anim =  this.anims.get(`${this.texture.key}:${name}`);
+        const anim =  this.scene.anims.get(`${this.texture.key}:${name}`);
         if (!anim) {
             throw new Error(
                 `Animation not found: ${this.texture.key}:${name}`
