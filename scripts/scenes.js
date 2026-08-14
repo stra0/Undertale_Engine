@@ -812,7 +812,10 @@ export class BattleSelectScene extends UndertaleScene {
 
         this.load.audio("assets/sounds/snd_heal","./assets/sounds/snd_heal.wav");
         this.load.audio("assets/sounds/snd_hurt","./assets/sounds/snd_hurt.wav");
+        this.load.audio("assets/sounds/snd_crack","./assets/sounds/snd_crack.wav");
+        this.load.audio("assets/sounds/snd_break","./assets/sounds/snd_break.wav");
     }
+    
 
     async onCreate() {
         await this.loadSpriteSheet("assets/images/soul/soul","./assets/images/soul/soul.png","./assets/images/soul/soul.json");
@@ -1035,12 +1038,16 @@ export class BattleScene extends UndertaleScene {
         this.uiContainer.destroy();
         this.board.destroy();
 
+        this.soundManager.stopAll();
+
         this.time.delayedCall(400,() => {
             this.soul.setFrame(1,false,false);
+            this.soundManager.playSE("assets/sounds/snd_crack");
         });
         this.time.delayedCall(1800,() => {
             this.soul.break();
             this.soul.destroy();
+            this.soundManager.playSE("assets/sounds/snd_break");
         });
     }
 

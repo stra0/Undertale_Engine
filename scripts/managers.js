@@ -82,6 +82,11 @@ export class SoundManager {
             this.bgm.setVolume(this.getBGMVolume());
         }
     }
+
+    stopAll() {
+        this.scene.stopAll();
+        this.bgm = null;
+    }
 }
 
 export class HpManager {
