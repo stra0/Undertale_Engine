@@ -978,6 +978,7 @@ export class BattleScene extends UndertaleScene {
     }
 
     preload() {
+        if (!this.files) return;
         for (const [key,assets] of this.files) {
             const isBitmap = assets.some(asset => asset.type ==="bitmap");
             if (isBitmap) {
@@ -995,13 +996,16 @@ export class BattleScene extends UndertaleScene {
 
     onCreate() {
         const tex = this.textures.get("assets/images/soul/soul");
-        for (const assets of this.files.values()) {
-            for (const asset of assets) {
-                if (asset.url?.startsWith("blob:")) {
-                    URL.revokeObjectURL(asset.url);
+        if (this.files) {
+            for (const assets of this.files.values()) {
+                for (const asset of assets) {
+                    if (asset.url?.startsWith("blob:")) {
+                        URL.revokeObjectURL(asset.url);
+                    }
                 }
             }
         }
+
         this.updateables = [];
         this.bullets = [];
 
@@ -1051,7 +1055,7 @@ export class BattleScene extends UndertaleScene {
         });
 
         this.time.delayedCall(4500,() => {
-            this.scene.start("BattleSelectScene")
+            this.scene.restart();
         });
     }
 
