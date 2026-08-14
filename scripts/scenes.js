@@ -1050,7 +1050,7 @@ export class BattleScene extends UndertaleScene {
             this.soundManager.playSE("assets/sounds/snd_break");
         });
 
-        this.time.delayedCall(3800,() => {
+        this.time.delayedCall(4500,() => {
             this.scene.start("BattleSelectScene")
         });
     }
