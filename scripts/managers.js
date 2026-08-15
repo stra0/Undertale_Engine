@@ -208,6 +208,14 @@ export class HpManager {
             this.nextDamageSource = null;
         }
     }
+
+    destroy() {
+        this.scene.events.off(
+            "bullet_hit",
+            this.onHit,
+            this
+        );
+    }
 }
 
 export class InventoryManager {

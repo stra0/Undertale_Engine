@@ -278,6 +278,7 @@ export class Soul extends UndertaleObject {
     }
 
     break() {
+        this.hpManager.destroy();
         for (let i = 0;i<6;i++) {
             const shard = new SoulShards(this.scene,this.x,this.y,this.color);
         }
