@@ -176,13 +176,13 @@ export class HpManager {
             this.krTimer += delta;
 
             let interval = 0;
-            if (this.kr >= 40)       interval = 16.66;
+            if (this.kr >= 40)       interval = 17;
             else if (this.kr >= 30)  interval = 50;
-            else if (this.kr >= 22)  interval = 133.33;
+            else if (this.kr >= 22)  interval = 132;
             else if (this.kr >= 15)  interval = 300;
             else if (this.kr >= 10)  interval = 550;
-            else if (this.kr >= 5)   interval = 833.33;
-            else interval = 1083.3;
+            else if (this.kr >= 5)   interval = 832;
+            else interval = 1082;
 
             if (interval > 0) {
                 while (this.krTimer >= interval && this.kr > 0) {
@@ -290,5 +290,40 @@ export class ItemManager {
 
     getUse(id,useIndex = 0) {
         return this.get(id).uses[useIndex];
+    }
+}
+
+export class TurnManager {
+    constructor(scene,battleData) {
+        this.scene = scene;
+        this.battleData = battleData;
+        this.turn = 0;
+        this.time = 0;
+        this.turnRule = battleData.turnRule
+
+        this.bulletManager = new BulletManager(this);
+        this.eventManager = new EventManager(this);
+    }
+
+    changeTurn(turn) {
+        if (turn === "enemy") {
+            this.
+        } else {
+
+        }
+    }
+
+    update(delta) {
+        this.time += delta;
+    }
+}
+
+export class BulletManager {
+    constructor(turnManager) {
+        this.turnManager = turnManager;
+    }
+
+    update0(time,delta) {
+        
     }
 }

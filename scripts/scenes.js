@@ -1,5 +1,5 @@
 import { SaveManager } from './core.js';
-import { InputManager, SoundManager, HpManager } from './managers.js';
+import { InputManager, SoundManager, HpManager, TurnManager, BulletManager, EventManager} from './managers.js';
 import { MenuCursor,UiContainer} from './ui.js';
 import { Board, SoulShards , RedSoul, Bone } from './objects.js';
 import { normalizeKey } from './constants.js';
@@ -968,9 +968,9 @@ export class BattleSelectScene extends UndertaleScene {
     }
 }
 
-export class BattleScene extends UndertaleScene {
+export class BattleChoiceScene extends UndertaleScene {
     constructor() {
-        super({key: "BattleScene"})
+        super({key:"BattleChoiceScene"})
     }
 
     init(data) {
@@ -995,7 +995,6 @@ export class BattleScene extends UndertaleScene {
     }
 
     onCreate() {
-        const tex = this.textures.get("assets/images/soul/soul");
         if (this.files) {
             for (const assets of this.files.values()) {
                 for (const asset of assets) {
@@ -1006,6 +1005,114 @@ export class BattleScene extends UndertaleScene {
             }
         }
 
+        this.items = [];
+
+        const battles = this.cache.json.get("battleData").battles;
+
+        let y = 220;
+
+        for (const battleName of Object.keys(battles)) {
+            this.items.push({label: battleName,x:160,y:y});
+            y += 40;
+        }
+
+        this.cursorManager = new MenuCursor({
+            rows: this.items.length,
+            cols: 1,
+            loop: true
+        });
+        this.texts = this.items.map(item => {
+            const text = this.drawText(
+                item.label,
+                item.x,
+                item.y,
+                {origin: 0}
+            );
+            text.baseY = item.y;
+        })
+    }
+
+    updateTextPositions() {
+        this.texts.forEach((text,i) => {
+            const y = text.baseY - this.scrollOffset;
+            text.label.y = y;
+            text.value.y = y;
+
+            if (y < -20 || y > 500) {
+                text.label.setVisible(false);
+                text.value.setVisible(false);
+            } else {
+                text.label.setVisible(true);
+                text.value.setVisible(true);
+            }
+        });
+    }
+
+    onUpdate() {
+        if (this.inputManager.wasPressed("up")) {
+            this.cursorManager.move(0,-1);
+            this.soundManager.playSE("assets/sounds/snd_switch");
+        }
+
+        if (this.inputManager.wasPressed("down")) {
+            this.cursorManager.move(0,1);
+            this.soundManager.playSE("assets/sounds/snd_switch");
+        }
+
+        if (this.inputManager.wasPressed("confirm")
+           ) {
+            this.decide();
+            this.soundManager.playSE("assets/sounds/snd_confirm");
+           }
+
+        this.managerUpdate();
+    }
+
+    decide() {
+        const index = this.cursorManager.index;
+        const battleId = this.battleIds[index];
+
+        this.scene.start("BattleScene", {
+            assets: this.files,
+            battleId: battleId
+        });
+    }
+
+    managerUpdate() {
+        const selected = this.cursorManager.index;
+
+        this.texts.forEach((text,i) => {
+            text.setTint(
+                i === selected ? 0xffff33:0xffffff
+            );
+        });
+    }
+
+    adjustScroll(delta) {
+        const target = this.texts[this.cursorManager.row];
+        const targetOffset = target.baseY - this.centerY;
+        
+        const speed = 10;
+
+        this.scrollOffset +=
+            (targetOffset - this.scrollOffset) *
+            (1 - Math.exp(-speed * delta / 1000));
+
+        this.updateTextPositions();
+    }
+}
+
+export class BattleScene extends UndertaleScene {
+    constructor() {
+        super({key: "BattleScene"})
+    }
+
+    init(data) {
+        this.files = data.assets;
+        this.battleId =data.battleId;
+    }
+
+    onCreate() {
         this.updateables = [];
         this.bullets = [];
 
@@ -1019,6 +1126,7 @@ export class BattleScene extends UndertaleScene {
         const bone = new Bone(this,240,320,20);
 
         this.uiContainer = new UiContainer(this,this.soul.hpManager,useKr);
+        this.turnmanager = new TurnManager(this,battle);
         this.addEvents();
     }
 
@@ -1060,6 +1168,7 @@ export class BattleScene extends UndertaleScene {
     }
 
     onUpdate(time,delta) {
+        this.turnManager.update(delta);
         for (const obj of this.updateables) {
             obj.update0?.(time,delta);
         }

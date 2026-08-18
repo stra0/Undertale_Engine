@@ -3,6 +3,7 @@
         "sans_fight": {
             "enemies": ["sans"],
             "isFirstPlayerTurn": false,
+            "turnRule": "fight",
             "dialogues": [
                 {
                     "priority": 1000,
@@ -15,9 +16,75 @@
                     }
                 }
             ],
-            "waves": [
-                "intro_bone",
-                "bone_rain"
+            "turns": [
+                {
+                    "type": "enemy",
+                    "bullets": [
+                        {
+                            "time": 100,
+                            "type": "bone",
+                            "parent": "sans",
+                            "tag": [
+                                "example"
+                            ],
+                            "x": 260,
+                            "y": 260,
+                            "length": 20,
+                            "lifeTime": 3000
+                        },
+                        {
+                            "time": 100,
+                            "type": "bone",
+                            "parent": "sans",
+                            "tag": [],
+                            "x": 300,
+                            "y": 260,
+                            "length": 20,
+                            "lifeTime": 3000
+                        },
+                        {
+                            "time": 100,
+                            "type": "bone",
+                            "parent": "sans",
+                            "tag": [
+                                "example",
+                                "other"
+                            ],
+                            "x": 340,
+                            "y": 260,
+                            "length": 20,
+                            "lifeTime": 3000
+                        },
+                        {
+                            "time": 100,
+                            "type": "bone",
+                            "parent": "sans",
+                            "tag": [
+                                "other"
+                            ],
+                            "x": 380,
+                            "y": 260,
+                            "length": 20,
+                            "lifeTime": 3000
+                        }
+                    ],
+                    "events": [
+                        {
+                            "time": 1000,
+                            "type": "destroy",
+                            "targets": [
+                                "example"
+                            ]
+                        },
+                        {
+                            "time": 2000,
+                            "type": "destroy",
+                            "targets": [
+                                "other"
+                            ]
+                        }
+                    ]
+                }
             ]
         }
     }
