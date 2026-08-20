@@ -1117,7 +1117,8 @@ export class BattleScene extends UndertaleScene {
         this.bullets = [];
 
         const battle = this.cache.json.get("data/battleData");
-        const enemyData = this.cache.json.get("data/enemyData").enemies;
+        const enemyData = this.cache.json.get("data/enemyData");
+        const enemies = enemyData.enemies;
         this.playerData = this.cache.json.get("data/player");
         const useKr = battle.battles.sans_fight.enemies.some(id => enemyData[id].useKr);
 
