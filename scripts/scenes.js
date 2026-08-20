@@ -1031,6 +1031,8 @@ export class BattleChoiceScene extends UndertaleScene {
                 {origin: 0}
             );
             text.baseY = item.y;
+
+            return text;
         })
     }
 
