@@ -975,11 +975,9 @@ export class BattleChoiceScene extends UndertaleScene {
 
     init(data) {
         this.files = data.assets;
-        alert("init")
     }
 
     preload() {
-        alert("preload")
         if (!this.files) return;
         for (const [key,assets] of this.files) {
             const isBitmap = assets.some(asset => asset.type ==="bitmap");
@@ -994,11 +992,9 @@ export class BattleChoiceScene extends UndertaleScene {
                 }
             }
         }
-        alert("finishpre")
     }
 
     onCreate() {
-        alert("oncreate")
         if (this.files) {
             for (const assets of this.files.values()) {
                 for (const asset of assets) {
@@ -1009,13 +1005,9 @@ export class BattleChoiceScene extends UndertaleScene {
             }
         }
 
-        alert("bcs");
-
         this.items = [];
 
-        const battles = this.cache.json.get("battleData").battles;
-
-        alert(battles);
+        const battles = this.cache.json.get("data/battleData").battles;
 
         alert(Object.keys(battles)[0]);
 
