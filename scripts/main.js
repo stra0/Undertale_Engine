@@ -4,6 +4,7 @@ import {
     MainMenuScene, 
     OptionScene, 
     BattleSelectScene, 
+    BattleChoiceScene,
     BattleScene, 
     EditorScene 
 } from "./scenes.js";

@@ -868,7 +868,7 @@ export class BattleSelectScene extends UndertaleScene {
             for (const [key,assets] of this._files.entries()) {
                 await this.sameKeyAssetsLoad(key,assets);
             }
-                    this.scene.start("BattleScene",{
+                    this.scene.start("BattleChoiceScene",{
                         assets: this._files
                     });
                 });
