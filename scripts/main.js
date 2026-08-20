@@ -42,6 +42,7 @@ window.addEventListener("DOMContentLoaded", async () => {
             MainMenuScene,
             OptionScene,
             BattleSelectScene,
+            BattleChoiceScene,
             BattleScene,
             EditorScene
                ]
