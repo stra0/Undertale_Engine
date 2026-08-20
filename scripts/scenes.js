@@ -1005,9 +1005,15 @@ export class BattleChoiceScene extends UndertaleScene {
             }
         }
 
+        alert("bcs");
+
         this.items = [];
 
         const battles = this.cache.json.get("battleData").battles;
+
+        alert(battles);
+
+        alert(Object.keys(battles)[0]);
 
         let y = 220;
 
