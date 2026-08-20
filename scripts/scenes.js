@@ -1130,7 +1130,7 @@ export class BattleScene extends UndertaleScene {
         const bone = new Bone(this,240,320,20);
 
         this.uiContainer = new UiContainer(this,this.soul.hpManager,useKr);
-        this.turnmanager = new TurnManager(this,battle);
+        this.turnManager = new TurnManager(this,battle);
         this.addEvents();
     }
 
