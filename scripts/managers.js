@@ -299,18 +299,25 @@ export class TurnManager {
         this.battleData = battleData;
         this.turn = 0;
         this.time = 0;
-        this.turnRule = battleData.turnRule
+        this.turnRule = battleData.turnRule;
+
+        this.currentTurn = "player";
 
         this.bulletManager = new BulletManager(this);
         this.eventManager = new EventManager(this);
     }
 
-    changeTurn(turn) {
-        if (turn === "enemy") {
-            this.
+    finishTurn() {
+        if (this.currentTurn === "player") {
+            this.currentTurn = "enemy";
         } else {
-
+            this.currentTurn = "player";
+            this.turn++;
         }
+    }
+
+    startTurn() {
+        this.bulletManager.start();
     }
 
     update(delta) {
