@@ -334,3 +334,13 @@ export class BulletManager {
         
     }
 }
+
+export class EventManager {
+    constructor(turnManager) {
+        this.turnManager = turnManager;
+    }
+
+    update0(time,delta) {
+        
+    }
+}
